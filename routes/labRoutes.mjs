@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/form", (req, res) => {
-  res.render("form", { title: "Form Page" });
+  res.render("form", { title: "Please fill up the form" });
 });
 
 router.post("/submit", (req, res) => {
@@ -21,7 +21,21 @@ router.post("/submit", (req, res) => {
 });
 
 router.get("/image", (req, res) => {
-  res.render("image", { title: "Image Page" });
+  res.render("image", { title: "If you like it,You can download it!" });
+});
+
+// create route for downloading the image
+// when a GET request is made to '/download' path
+router.get("/download", (req, res) => {
+  const filePath = path.join(__dirname, "..", "images", "lab-1.jpg");
+  res.download(filePath, "downloaded_lab-1.jpg", (err) => {
+    if (err) {
+      console.log("Download error:", err);
+      res.status(500).send("Download failed.");
+    } else {
+      console.log("Image downloaded successfully.");
+    }
+  });
 });
 
 export default router;
