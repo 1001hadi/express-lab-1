@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import router from "./routs/labRoutes.mjs";
 
 const app = express();
-const PORT = 3000;
+const PORT = 3000 || 3001;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "images"))); 
+app.use(express.static(path.join(__dirname, "images")));
 app.use(router);
 
 app.use((req, res, next) => {
